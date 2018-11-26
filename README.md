@@ -1,5 +1,7 @@
 # tic-tac-toe
 
+To see the vux version, checkout the `vuex` branch.
+
 ## Project setup
 ```
 npm install
