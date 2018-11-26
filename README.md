@@ -1,6 +1,6 @@
 # tic-tac-toe
 
-To see the vux version, checkout the `vuex` branch.
+To see the vuex version, checkout the `vuex` branch.
 
 ## Project setup
 ```
