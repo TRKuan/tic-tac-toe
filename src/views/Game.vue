@@ -1,14 +1,15 @@
 <template>
   <div class="game">
     <turn :name="turn"/>
-    <board @turnChanged="onTurnChanged" @gameEnd="onGameEnd" ref="board"/>
+    <board ref="board"/>
     <message :text="messageText"/>
-    <button v-if="end" class="btn" @click="restart">Restart</button>
+    <button v-if="end" class="btn" @click="()=>$store.commit('restart')">Restart</button>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import { mapState } from 'vuex'
 import Board from '@/components/Board.vue'
 import Turn from '@/components/Turn.vue'
 import Message from '@/components/Message.vue'
@@ -20,31 +21,11 @@ export default {
     Turn,
     Message
   },
-  data() {
-    return {
-      turn: 'O',
-      messageText: '',
-      end: false
-    }
-  },
-  methods: {
-    onTurnChanged(turn) {
-      this.turn = turn
-    },
-    onGameEnd(winner) {
-      this.end = true
-      if(winner === 'draw')
-        this.messageText = 'Draw'
-      else
-        this.messageText = `Winner: ${winner}`
-    },
-    restart() {
-      this.end = false
-      this.messageText = ''
-      this.turn = 'O'
-      this.$refs.board.restart()
-    }
-  }
+  computed: mapState([
+    'turn',
+    'messageText',
+    'end'
+  ])
 }
 </script>
 <style lang="css" scoped>
