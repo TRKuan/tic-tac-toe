@@ -31,7 +31,7 @@ export default {
   },
   props: {
     turn: String,
-    end: false
+    end: Boolean
   },
   methods: {
     onSquareClicked(i, j) {
