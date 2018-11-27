@@ -23,8 +23,6 @@ export default {
   },
   computed: mapState([
     'squares',
-    'turn',
-    'end'
   ]),
   methods: {
     onSquareClicked(i, j) {

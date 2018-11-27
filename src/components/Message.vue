@@ -1,15 +1,16 @@
 <template lang="html">
   <div class="message">
-    {{text}}
+    {{messageText}}
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'message',
-  props: {
-    text: String
-  }
+  computed: mapState([
+    'messageText',
+  ])
 }
 </script>
 

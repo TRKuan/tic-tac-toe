@@ -1,6 +1,6 @@
 <template>
   <div class="game">
-    <turn :name="turn"/>
+    <turn />
     <board ref="board"/>
     <message :text="messageText"/>
     <button v-if="end" class="btn" @click="()=>$store.commit('restart')">Restart</button>
@@ -22,8 +22,6 @@ export default {
     Message
   },
   computed: mapState([
-    'turn',
-    'messageText',
     'end'
   ])
 }

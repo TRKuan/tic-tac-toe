@@ -1,15 +1,16 @@
 <template lang="html">
   <div class="turn">
-    {{name}}'s trun
+    {{turn}}'s trun
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'turn',
-  props: {
-    name: String
-  }
+  computed: mapState([
+    'turn'
+  ])
 }
 </script>
 
