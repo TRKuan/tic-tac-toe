@@ -31,7 +31,6 @@ export default {
     toggleTurn() {
       if(this.turn == 'O')this.turn = 'X'
       else this.turn = 'O'
-      this.$emit('turnChanged', this.turn)
     },
     onGameEnd(winner) {
       this.end = true
