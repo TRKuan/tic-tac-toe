@@ -5,6 +5,7 @@
         v-for="j in 3"
         :type="squares[(i-1)*3+j-1]"
         :key="(i-1)*3+j-1"
+        :idx="(i-1)*3+j-1"
         :class="{'col-center':j==2}"
         @click="() => onSquareClicked(i-1, j-1)"
       />
@@ -34,62 +35,46 @@ export default {
     end: Boolean
   },
   methods: {
-    onSquareClicked(i, j) {
-      if(this.squares[i*3+j] !== '' || this.end)return
-      this.$set(this.squares, i*3+j, this.turn)
+    onSquareClicked(idx) {
+      if(this.squares[idx] !== '' || this.end)return
+      this.$set(this.squares, idx, this.turn)
       this.$emit('squareClicked')
       this.checkGameEnd()
     },
     checkGameEnd() {
-      let winner = ''
       let end = false
       if(this.squares[0*3+0] !== '' && this.squares[0*3+0] === this.squares[1*3+1] && this.squares[1*3+1] === this.squares[2*3+2]){
         end = true
-        winner = this.squares[0*3+0]
       }
       else if(this.squares[2*3+0] !== '' && this.squares[2*3+0] === this.squares[1*3+1] && this.squares[1*3+1] === this.squares[0*3+2]){
         end = true
-        winner = this.squares[2*3+0]
       }
       else if(this.squares[0*3+0] !== '' && this.squares[0*3+0] === this.squares[0*3+1] && this.squares[0*3+1] === this.squares[0*3+2]){
         end = true
-        winner = this.squares[0*3+0]
       }
       else if(this.squares[1*3+0] !== '' && this.squares[1*3+0] === this.squares[1*3+1] && this.squares[1*3+1] === this.squares[1*3+2]){
         end = true
-        winner = this.squares[1*3+0]
       }
       else if(this.squares[2*3+0] !== '' && this.squares[2*3+0] === this.squares[2*3+1] && this.squares[2*3+1] === this.squares[2*3+2]){
         end = true
-        winner = this.squares[2*3+0]
       }
       else if(this.squares[0*3+0] !== '' && this.squares[0*3+0] === this.squares[1*3+0] && this.squares[1*3+0] === this.squares[2*3+0]){
         end = true
-        winner = this.squares[0*3+0]
       }
       else if(this.squares[0*3+1] !== '' && this.squares[0*3+1] === this.squares[1*3+1] && this.squares[1*3+1] === this.squares[2*3+1]){
         end = true
-        winner = this.squares[0*3+1]
       }
       else if(this.squares[0*3+2] !== '' && this.squares[0*3+2] === this.squares[1*3+2] && this.squares[1*3+2] === this.squares[2*3+2]){
         end = true
-        winner = this.squares[0*3+2]
       }
 
-      if(end)this.$emit('gameEnd', winner)
+      if(end)this.$emit('gameEnd')
       else{
         for(let i=0;i<9;i++){
           if(this.squares[i] === '')return
         }
-        this.$emit('gameEnd', 'draw')
+        this.$emit('gameEnd')
       }
-    },
-    restart() {
-      this.squares = [
-        '', '', '',
-        '', '', '',
-        '', '', '',
-      ]
     }
   }
 }

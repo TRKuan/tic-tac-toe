@@ -1,7 +1,7 @@
 <template>
   <div class="game">
     <turn :turn="turn"/>
-    <board :turn="turn" :end="end" @squareClicked="toggleTurn" @gameEnd="onGameEnd" ref="board"/>
+    <board :turn="turn" :end="end" @squareClicked="toggleTurn" @gameEnd="onGameEnd"/>
     <h1 v-if="end">End</h1>
   </div>
 </template>
