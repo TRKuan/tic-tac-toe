@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="turn">
-    {{turn}}'s trun
+    {{turn}}'s turn
   </div>
 </template>
 
