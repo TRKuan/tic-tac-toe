@@ -6,7 +6,8 @@
 export default {
   name: 'square',
   props: {
-    type: String
+    type: String,
+    idx: Number
   }
 }
 </script>

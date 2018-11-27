@@ -7,7 +7,7 @@
         :key="(i-1)*3+j-1"
         :idx="(i-1)*3+j-1"
         :class="{'col-center':j==2}"
-        @click="() => onSquareClicked(i-1, j-1)"
+        @click="() => onSquareClicked((i-1)*3+j-1)"
       />
     </div>
   </div>
