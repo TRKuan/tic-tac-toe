@@ -2,8 +2,7 @@
   <div class="game">
     <turn />
     <board ref="board"/>
-    <message :text="messageText"/>
-    <button v-if="end" class="btn" @click="()=>$store.commit('restart')">Restart</button>
+    <h1 v-if="end">End</h1>
   </div>
 </template>
 
@@ -12,14 +11,12 @@
 import { mapState } from 'vuex'
 import Board from '@/components/Board.vue'
 import Turn from '@/components/Turn.vue'
-import Message from '@/components/Message.vue'
 
 export default {
   name: 'game',
   components: {
     Board,
-    Turn,
-    Message
+    Turn
   },
   computed: mapState([
     'end'
