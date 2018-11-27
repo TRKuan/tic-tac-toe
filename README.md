@@ -2,6 +2,8 @@
 
 To see the vuex version, checkout the `vuex` branch.
 
+Use `vue add @vue/vuex` to add vuex to the project.
+
 ## Project setup
 ```
 npm install
