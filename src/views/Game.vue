@@ -1,7 +1,7 @@
 <template>
   <div class="game">
     <turn :name="turn"/>
-    <board @turnChanged="onTurnChanged" @gameEnd="onGameEnd" ref="board"/>
+    <board :turn="turn" :end="end" @squareClicked="toggleTurn" @gameEnd="onGameEnd" ref="board"/>
     <message :text="messageText"/>
     <button v-if="end" class="btn" @click="restart">Restart</button>
   </div>
@@ -28,8 +28,10 @@ export default {
     }
   },
   methods: {
-    onTurnChanged(turn) {
-      this.turn = turn
+    toggleTurn() {
+      if(this.turn == 'O')this.turn = 'X'
+      else this.turn = 'O'
+      this.$emit('turnChanged', this.turn)
     },
     onGameEnd(winner) {
       this.end = true
