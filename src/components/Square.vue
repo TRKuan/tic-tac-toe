@@ -1,12 +1,12 @@
 <template lang="html">
-  <button class="square" @click="() => this.$emit('click')">{{type}}</button>
+  <button class="square" @click="() => this.$store.dispatch('squareClicked', idx)">{{$store.state.squares[idx]}}</button>
 </template>
 
 <script>
 export default {
   name: 'square',
   props: {
-    type: String
+    idx: Number
   }
 }
 </script>

@@ -19,39 +19,30 @@ export default new Vuex.Store({
       else state.turn = 'O'
     },
     checkGameEnd(state) {
-      let winner = ''
       let end = false
       if(state.squares[0*3+0] !== '' && state.squares[0*3+0] === state.squares[1*3+1] && state.squares[1*3+1] === state.squares[2*3+2]){
         end = true
-        winner = state.squares[0*3+0]
       }
       else if(state.squares[2*3+0] !== '' && state.squares[2*3+0] === state.squares[1*3+1] && state.squares[1*3+1] === state.squares[0*3+2]){
         end = true
-        winner = state.squares[2*3+0]
       }
       else if(state.squares[0*3+0] !== '' && state.squares[0*3+0] === state.squares[0*3+1] && state.squares[0*3+1] === state.squares[0*3+2]){
         end = true
-        winner = state.squares[0*3+0]
       }
       else if(state.squares[1*3+0] !== '' && state.squares[1*3+0] === state.squares[1*3+1] && state.squares[1*3+1] === state.squares[1*3+2]){
         end = true
-        winner = state.squares[1*3+0]
       }
       else if(state.squares[2*3+0] !== '' && state.squares[2*3+0] === state.squares[2*3+1] && state.squares[2*3+1] === state.squares[2*3+2]){
         end = true
-        winner = state.squares[2*3+0]
       }
       else if(state.squares[0*3+0] !== '' && state.squares[0*3+0] === state.squares[1*3+0] && state.squares[1*3+0] === state.squares[2*3+0]){
         end = true
-        winner = state.squares[0*3+0]
       }
       else if(state.squares[0*3+1] !== '' && state.squares[0*3+1] === state.squares[1*3+1] && state.squares[1*3+1] === state.squares[2*3+1]){
         end = true
-        winner = state.squares[0*3+1]
       }
       else if(state.squares[0*3+2] !== '' && state.squares[0*3+2] === state.squares[1*3+2] && state.squares[1*3+2] === state.squares[2*3+2]){
         end = true
-        winner = state.squares[0*3+2]
       }
       if(end){
         state.end = true
@@ -62,11 +53,16 @@ export default new Vuex.Store({
         state.end = true
       }
     },
-    setSquares(state, payload) {
-      Vue.set(state.squares, payload.i*3+payload.j, state.turn)
+    setSquares(state, idx) {
+      Vue.set(state.squares, idx, state.turn)
     }
   },
   actions: {
-
+    squareClicked(context, idx) {
+      if(context.state.squares[idx] !== '' || context.state.end)return
+      context.commit('setSquares', idx)
+      context.commit('toggleTurn')
+      context.commit('checkGameEnd')
+    }
   }
 })
