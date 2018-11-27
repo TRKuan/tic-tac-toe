@@ -1,9 +1,8 @@
 <template>
   <div class="game">
-    <turn :name="turn"/>
+    <turn :turn="turn"/>
     <board :turn="turn" :end="end" @squareClicked="toggleTurn" @gameEnd="onGameEnd" ref="board"/>
-    <message :text="messageText"/>
-    <button v-if="end" class="btn" @click="restart">Restart</button>
+    <h1 v-if="end">End</h1>
   </div>
 </template>
 
@@ -11,19 +10,16 @@
 // @ is an alias to /src
 import Board from '@/components/Board.vue'
 import Turn from '@/components/Turn.vue'
-import Message from '@/components/Message.vue'
 
 export default {
   name: 'game',
   components: {
     Board,
-    Turn,
-    Message
+    Turn
   },
   data() {
     return {
       turn: 'O',
-      messageText: '',
       end: false
     }
   },
@@ -32,18 +28,8 @@ export default {
       if(this.turn == 'O')this.turn = 'X'
       else this.turn = 'O'
     },
-    onGameEnd(winner) {
+    onGameEnd() {
       this.end = true
-      if(winner === 'draw')
-        this.messageText = 'Draw'
-      else
-        this.messageText = `Winner: ${winner}`
-    },
-    restart() {
-      this.end = false
-      this.messageText = ''
-      this.turn = 'O'
-      this.$refs.board.restart()
     }
   }
 }

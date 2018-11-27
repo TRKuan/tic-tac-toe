@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="turn">
-    {{name}}'s trun
+    {{turn}}'s trun
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   name: 'turn',
   props: {
-    name: String
+    turn: String
   }
 }
 </script>
